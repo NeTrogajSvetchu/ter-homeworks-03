@@ -30,3 +30,26 @@ variable "vpc_name" {
   default     = "develop"
   description = "VPC network&subnet name"
 }
+
+variable "vm_family" { 
+  type        = string
+  default     = "ubuntu-2004-lts"
+  description = "Семейство операционки"
+}
+variable "DZ_platform_id" { 
+  type        = string
+  default     = "standard-v2"
+  description = "политика планирования"
+}
+
+variable "sec_name" {
+  type = string
+  default = "example_dynamic"
+}
+
+variable "metadata" {
+  type = map(string)
+  default = {serial-port-enable = "1"  }
+}
+
+
