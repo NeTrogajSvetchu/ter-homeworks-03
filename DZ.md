@@ -11,3 +11,7 @@
 
 ![Alt text](png/4.png)
 ![Alt text](png/5.png)
+
+Задание 4.
+
+![Alt text](png/6.png)

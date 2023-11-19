@@ -15,6 +15,7 @@ resource "yandex_compute_disk" "storage" {
 
 
 resource "yandex_compute_instance" "storage" {
+    depends_on = [yandex_compute_instance.WM-fore_each]
     platform_id = var.DZ_platform_id 
     name = "storage"
   
