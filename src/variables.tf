@@ -52,4 +52,18 @@ variable "metadata" {
   default = {serial-port-enable = "1"  }
 }
 
+variable "vm_nat" {
+  type = bool
+  default = false
+}
 
+variable "scheduling_policy" {
+  type = bool
+  default = true
+}
+
+/*variable "vm_nat" {
+  type = bool
+  default = true
+}
+*/

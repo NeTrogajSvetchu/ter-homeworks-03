@@ -13,6 +13,8 @@ type = list(object(
   core_fraction=number
   size=optional(number)
   type=string 
+  preemptible= bool
+  nat= bool
    },
   
 )) 
@@ -25,6 +27,8 @@ type = list(object(
   core_fraction=5,
   size= 10,
   type= "network-ssd"
+  preemptible = true
+  nat       = true
 },
 {
   name = "replica"
@@ -33,6 +37,8 @@ type = list(object(
   core_fraction=5
   size= 5
   type= "network-hdd"
+  preemptible = true
+  nat       = true
 },]
   
 }

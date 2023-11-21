@@ -19,3 +19,7 @@
 Задание 5.
 
 ![Alt text](png/7.png)
+
+Задание 6.
+
+![Alt text](png/8.png)

@@ -3,7 +3,7 @@ data "yandex_compute_image" "ubuntu" {
   family = var.vm_family  
 }
 resource "yandex_compute_instance" "WM-count" {
-  count = 2
+  count = var.count_yandex_compute_instance_WM-count
   name  = "web-${count.index + 1}"
 
   platform_id = var.DZ_platform_id 
@@ -19,11 +19,11 @@ resources {
     }
   }
   scheduling_policy {
-    preemptible = true
+    preemptible = var.scheduling_policy
   }
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
-    nat       = true
+    nat       = var.vm_nat
     security_group_ids = [yandex_vpc_security_group.example.id]
   }
 

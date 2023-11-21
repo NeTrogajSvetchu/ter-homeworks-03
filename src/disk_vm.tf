@@ -1,23 +1,16 @@
 resource "yandex_compute_disk" "storage" {
-    count = 3
-  /*name = "Virtual Disk - ${count.index + 1}" Яндекс не пропустил
-
-    Error: Error while requesting API to create disk: server-request-id = 92aa4cee-cd56-43dd-a564-4eac0bd7cecb server-trace-id = a21b27e2bbe15a32:5429d76a77a7804f:a21b27e2bbe15a32:1 client-request-id = 03fe207e-f8b1-4f61-8d55-5252348e2177 client-trace-id = 8b16b744-9f2b-4d82-94de-e281255313e4 rpc error: code = InvalidArgument desc = Request validation error: Name: invalid resource name
-
-│   with yandex_compute_disk.storage[2],
-│   on disk_vm.tf line 1, in resource "yandex_compute_disk" "storage":
-│    1: resource "yandex_compute_disk" "storage" {
-│ */
-    size = 1
-    type = "network-ssd"
-    zone = "ru-central1-a"
+    count = var.count_yandex_compute_disk_storage
+    name = "virtualdisk-${count.index + 1}" 
+    size = var.size_yandex_compute_disk_storage
+    type = var.type_yandex_compute_disk_storage
+    zone = var.zone_yandex_compute_disk_storage
 }
 
 
 resource "yandex_compute_instance" "storage" {
     depends_on = [yandex_compute_instance.WM-fore_each]
     platform_id = var.DZ_platform_id 
-    name = "storage"
+    name = var.name_yandex_compute_instance_storage
   
   resources {
     cores         = var.disk_resources.disk_vm_cores
@@ -27,15 +20,15 @@ resource "yandex_compute_instance" "storage" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu.image_id
-      size = 10
+      size = var.size_yandex_compute_instance_storage
     }
   }
   scheduling_policy {
-    preemptible = true
+    preemptible = var.scheduling_policy
   }
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
-    nat       = true
+    nat       = var.vm_nat
     security_group_ids = [yandex_vpc_security_group.example.id]
   }
 

@@ -22,11 +22,11 @@ resource "yandex_compute_instance" "WM-fore_each" {
 
   }
   scheduling_policy {
-    preemptible = each.value ["preemptible"]
+    preemptible = var.scheduling_policy
   }
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
-    nat       = each.value ["nat"]
+    nat       = var.vm_nat
   }
   metadata = {
     serial-port-enable = var.metadata.serial-port-enable
